@@ -1,0 +1,19 @@
+.container{
+    margin-top: 5rem;
+    border-radius: 25px;
+    width: 50%;
+    height: auto;
+    transform: translateX(50%);
+    /* min-height: 5rem; */
+    background-color: wheat;
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+    color: black;
+    font-size: 1.3rem;
+    padding: .15rem;
+}

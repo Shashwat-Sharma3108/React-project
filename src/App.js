@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Form from "../src/Components/Form/Form.js";
+import GuestList from "../src/Components/List/GuestList";
+import Popup from "./Components/Popup/Popup";
+import {useState } from "react";
 function App() {
+  const [usersList, setUsersList] = useState([]);
+  const [value, setValue] = useState(false);
+  const [popupState, setPopupState] = useState(false);
+  
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevValue) => {
+      return [...prevValue, { name: uName, age: uAge }];
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {popupState && <Popup onButtonClick={setPopupState}/>}
+      <Form
+        onAddUser={addUserHandler}
+        onStateChange={setValue}
+        onError={setPopupState}
+      />
+      {value && <GuestList data={usersList} />}
     </div>
   );
 }
